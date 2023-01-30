@@ -18,9 +18,11 @@ class Feedback extends Component {
   };
 
   submit = contact => {
-    const newContact = [
-      { id: nanoid(), name: contact.name, number: contact.number },
-    ];
+    const newContact = {
+      id: nanoid(),
+      name: contact.name,
+      number: contact.number,
+    };
 
     const unique = this.state.contacts.map(elem =>
       contact.name.toLowerCase() !== elem.name.toLowerCase() ? true : false
@@ -28,7 +30,7 @@ class Feedback extends Component {
 
     unique.includes(false)
       ? alert(`${contact.name} is alredy in contacts`)
-      : this.setState({ contacts: this.state.contacts.concat(newContact) });
+      : this.setState({ contacts: [...this.state.contacts, newContact] });
   };
 
   filterNames = () => {
